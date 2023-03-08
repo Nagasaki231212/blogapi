@@ -1,18 +1,17 @@
-    require "rails_helper"
+require "rails_helper"
 
-    RSpec.describe "Health endpoint", type: :request do
+RSpec.describe "Health endpoint", type: :request do
+    describe "GET /health" do
+        before { get '/health'}
 
-        describe "GET /health" do 
-            before { get '/health'}
-        
-        it "should return Ok" do 
+        it "should return Ok" do
             payload = JSON.parse(response.body)
             expect(payload).not_to be_empty
-            expect(payload['api']).to eq('OK')
-        end 
+            expect(payload['api']).to eq('Ok')
+        end
 
-        it "should return status code 200" do 
-        expect{response}.to have_http_status(200)
-        end 
-    end 
-end 
+        it "should return status code 200" do
+            expect(response).to have_http_status(200)
+        end
+    end
+end
